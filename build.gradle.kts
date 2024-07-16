@@ -31,7 +31,7 @@ subprojects {
         }
         shadowJar {
             relocate("crypticlib", "${rootProject.group}.${rootProject.name.lowercase()}.crypticlib")
-            archiveFileName.set("${rootProject.name}-${project.name}-${rootProject.version}.jar")
+            archiveFileName.set("${rootProject.name}-${rootProject.version}.jar")
         }
 
     }
