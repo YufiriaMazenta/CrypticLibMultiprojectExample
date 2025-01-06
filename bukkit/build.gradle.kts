@@ -1,5 +1,3 @@
-import java.text.SimpleDateFormat
-
 repositories {
     mavenLocal()
     maven("https://repo.papermc.io/repository/maven-public/")
@@ -15,13 +13,10 @@ dependencies {
     implementation("com.crypticlib:bukkit:${rootProject.findProperty("crypticlibVersion")}")
 }
 
-var mainClass = "com.example.crypticlibexample.bukkit.Example"
-var pluginVersion: String = version.toString() + "-" + SimpleDateFormat("yyyyMMdd").format(System.currentTimeMillis())
-
 tasks {
     val props = HashMap<String, String>()
-    props["version"] = pluginVersion
-    props["main"] = mainClass
+    props["version"] = rootProject.version.toString()
+    props["main"] = rootProject.findProperty("main-bukkit").toString()
     props["name"] = rootProject.name
     processResources {
         filesMatching("plugin.yml") {

@@ -1,13 +1,11 @@
-import java.text.SimpleDateFormat
-
 plugins {
     id("java-library")
     id("maven-publish")
     id("com.github.johnrengelman.shadow").version("7.1.2")
 }
 
-group = "com.example"
-version = "1.0.0"
+group = rootProject.findProperty("group").toString()
+version = rootProject.findProperty("version")!!
 java.sourceCompatibility = JavaVersion.VERSION_17
 java.targetCompatibility = JavaVersion.VERSION_17
 
@@ -31,7 +29,7 @@ subprojects {
         }
         shadowJar {
             relocate("crypticlib", "${rootProject.group}.${rootProject.name.lowercase()}.crypticlib")
-            archiveFileName.set("${rootProject.name}-${rootProject.version}.jar")
+            archiveFileName.set("${rootProject.name}-${project.name}-${rootProject.version}.jar")
         }
 
     }
