@@ -1,2 +1,2 @@
 rootProject.name = "CrypticLibExample"
-include("bukkit", "bungee")
+include("bukkit", "bungee", "velocity")
