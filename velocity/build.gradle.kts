@@ -1,3 +1,7 @@
+plugins {
+    id("net.kyori.blossom") version "1.3.1"
+}
+
 repositories {
     mavenLocal()
     maven("https://oss.sonatype.org/content/groups/public/")
@@ -26,40 +30,11 @@ tasks {
             expand(props)
         }
     }
-    compileJava {
-        //创建一个新的目录用于临时存储替换后的文件
-        val tempDir = File("$buildDir/tempSources")
+}
 
-        //确保临时目录存在
-        doFirst {
-            tempDir.mkdirs() //确保目录存在
-
-            //遍历源文件进行替换
-            source.files.forEach { file ->
-                println(file.path)
-                if (file.extension == "java" || file.extension == "kt") {
-                    //读取原始文件内容
-                    val content = file.readText()
-
-                    //替换内容
-                    val updatedContent = content
-                        .replace("{{version}}", rootProject.version.toString())
-                        .replace("{{name}}", rootProject.name)
-                        .replace("{{id}}", rootProject.name.lowercase())
-
-                    //将替换后的内容写入临时目录中，而不是原始文件
-                    val tempFile = File(tempDir, file.relativeTo(file.parentFile).path)
-                    tempFile.parentFile.mkdirs() // 创建目录
-                    tempFile.writeText(updatedContent)
-                }
-            }
-
-            //将替换后的文件添加到编译任务中
-            source = fileTree(tempDir)
-        }
-        //在构建完成后删除临时文件夹，避免长期存储
-        doLast {
-            tempDir.deleteRecursively()
-        }
-    }
+blossom {
+    replaceToken("{{id}}", rootProject.name.lowercase())
+    replaceToken("{{name}}", rootProject.name)
+    replaceToken("{{version}}", rootProject.version.toString())
+    replaceTokenIn("velocity/src/main/java/com/example/crypticlibexample/velocity/Example.java")
 }
