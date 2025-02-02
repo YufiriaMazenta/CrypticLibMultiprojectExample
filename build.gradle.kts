@@ -31,7 +31,7 @@ subprojects {
             relocate("crypticlib", "${rootProject.group}.${rootProject.name.lowercase()}.crypticlib")
             archiveFileName.set("${rootProject.name}-${project.name}-${rootProject.version}.jar")
         }
-
     }
-
+    java.sourceCompatibility = JavaVersion.VERSION_17
+    java.targetCompatibility = JavaVersion.VERSION_17
 }
