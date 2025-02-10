@@ -1,9 +1,7 @@
 repositories {
     mavenLocal()
     maven("https://repo.papermc.io/repository/maven-public/")
-    maven("http://repo.crypticlib.com:8081/repository/maven-public/") {
-        isAllowInsecureProtocol = true
-    }
+    maven("https://repo.crypticlib.com:8081/repository/maven-public/")
     mavenCentral()
 }
 

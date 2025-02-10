@@ -6,9 +6,7 @@ repositories {
     mavenLocal()
     maven("https://oss.sonatype.org/content/groups/public/")
     //Velocity CrypticLib
-    maven("http://repo.crypticlib.com:8081/repository/maven-public/") {
-        isAllowInsecureProtocol = true
-    }
+    maven("https://repo.crypticlib.com:8081/repository/maven-public/")
     maven("https://libraries.minecraft.net/")
     mavenCentral()
 }
